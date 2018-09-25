@@ -1,0 +1,9 @@
+/src/modm
+/src/ublox
+/src/invensense
+/src/SConstruct
+/build
+
+project.xml.log
+.scons*
+*.pyc
