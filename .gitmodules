@@ -1,3 +1,6 @@
 [submodule "ext/modm"]
 	path = ext/modm
 	url = https://github.com/modm-io/modm.git
+[submodule "ext/ublox/minmea"]
+	path = ext/ublox/minmea
+	url = https://github.com/kosma/minmea.git
