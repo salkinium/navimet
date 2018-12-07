@@ -4,3 +4,9 @@
 [submodule "ext/ublox/minmea"]
 	path = ext/ublox/minmea
 	url = https://github.com/kosma/minmea.git
+[submodule "ext/ublox/ubx"]
+	path = ext/ublox/ubx
+	url = https://github.com/arobenko/cc.ublox.generated.git
+[submodule "ext/ublox/cc"]
+	path = ext/ublox/cc
+	url = https://github.com/arobenko/comms_champion.git
