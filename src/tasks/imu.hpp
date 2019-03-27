@@ -9,9 +9,7 @@
  */
 // ----------------------------------------------------------------------------
 
-#ifndef NAVIMET_IMU_TASK_HPP
-#define NAVIMET_IMU_TASK_HPP
-
+#pragma once
 #include <modm/processing/protothread.hpp>
 
 namespace navimet
@@ -26,15 +24,12 @@ public:
 	bool
 	update();
 
-	inline uint16_t
+	inline float
 	heading() const
 	{ return m_heading; }
 
 protected:
-	uint16_t m_heading{0};
+	float m_heading{0};
 };
 
 }
-
-
-#endif // NAVIMET_GPS_TASK_HPP

@@ -1,24 +1,21 @@
 <library>
   <repositories>
     <repository><path>../ext/modm/repo.lb</path></repository>
-    <repository><path>../ext/eMD/repo.lb</path></repository>
     <repository><path>../ext/ublox/repo.lb</path></repository>
   </repositories>
-  <extends>modm:board:nucleo-f411re</extends>
+  <extends>modm:nucleo-f411re</extends>
   <options>
     <option name="modm:build:build.path">../build</option>
     <option name="modm:build:project.name">navimet</option>
-    <option name="invensense:emd:driver:device">MPU9250</option>
   </options>
   <modules>
     <module>modm:platform:uart:1</module>
     <module>modm:platform:i2c:1</module>
     <module>modm:processing:timer</module>
     <module>modm:processing:protothread</module>
+    <module>modm:driver:bno055</module>
     <module>modm:build:scons</module>
 
     <module>ublox:ubx</module>
-
-    <module>invensense:modm:driver</module>
   </modules>
 </library>

@@ -21,4 +21,4 @@ def build(env):
     env.copy("minmea/minmea.h", "minmea.h")
     env.copy("minmea/minmea.c", "minmea.c")
 
-    env.add_metadata("flags.cppdefines", "timegm=mktime")
+    env.collect(":build:cppdefines", "timegm=mktime")

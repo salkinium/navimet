@@ -37,6 +37,12 @@ Hardware::update()
 	aliveTask.update();
 	gpsTask.update();
 	imuTask.update();
+
+	static modm::PeriodicTimer tmr{1000};
+	if (tmr.execute())
+	{
+		MODM_LOG_DEBUG <<  imuTask.heading() << modm::endl;
+	}
 }
 
 }
