@@ -12,6 +12,7 @@
 #include "gps.hpp"
 #include <modm/board.hpp>
 #include <modm/architecture/interface/assert.hpp>
+using namespace modm::literals;
 
 #include <ublox/message/CfgPrtUart.h>
 #include <ublox/message/CfgRate.h>
@@ -32,10 +33,10 @@ GpsTask::initialize()
 {
 	GpsUart::connect<Board::D2::Rx, Board::D8::Tx>(Gpio::InputType::PullUp);
 
-	GpsUart::initialize<Board::systemClock, 9'600>();
+	GpsUart::initialize<Board::SystemClock, 9.6_kBd>();
 	configurePort();
 	// Some NEO-6M chips don't support changing their baudrate ;_(
-	// GpsUart::initialize<Board::systemClock, 115'200>();
+	// GpsUart::initialize<Board::systemClock, 115.2_kBd>();
 	// configurePort();
 
 	configureUpdateRate();
@@ -59,7 +60,7 @@ GpsTask::configurePort()
 	inProtoMaskField.setBitValue(inProtoMaskField.BitIdx_inNmea, false);
 
 	// This may not work
-	msg.field_baudRate().setScaled(115'200);
+	msg.field_baudRate().setScaled(115.2_kBd);
 	MODM_LOG_INFO << "GPS baudrate set to " << msg.field_baudRate().value() << modm::endl;
 
 	sendMessage(msg);
@@ -71,7 +72,7 @@ GpsTask::configureUpdateRate()
 	using OutCfgRate = ublox::message::CfgRate<OutMessage>;
 	OutCfgRate msg;
 
-	msg.field_measRate().setScaled(200);
+	msg.field_measRate().setScaled(200_Hz);
 	MODM_LOG_INFO << "GPS measurement rate set to " << msg.field_measRate().value() << modm::endl;
 
 	sendMessage(msg);

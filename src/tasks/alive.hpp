@@ -9,9 +9,7 @@
  */
 // ----------------------------------------------------------------------------
 
-#ifndef NAVIMET_ALIVE_TASK_HPP
-#define NAVIMET_ALIVE_TASK_HPP
-
+#pragma once
 #include <modm/processing/timer.hpp>
 #include <modm/processing/protothread.hpp>
 
@@ -33,6 +31,3 @@ protected:
 };
 
 }
-
-
-#endif // NAVIMET_ALIVE_TASK_HPP

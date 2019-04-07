@@ -9,9 +9,8 @@
  */
 // ----------------------------------------------------------------------------
 
-#ifndef NAVIMET_GPS_TASK_HPP
-#define NAVIMET_GPS_TASK_HPP
-
+#pragma once
+// STM32 headers define the RTC module as a macro
 #pragma push_macro("RTC")
 #undef RTC
 #include <ublox/Message.h>
@@ -88,6 +87,3 @@ protected:
 };
 
 }
-
-
-#endif // NAVIMET_GPS_TASK_HPP
