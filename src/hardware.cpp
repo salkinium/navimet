@@ -13,6 +13,7 @@
 #include "tasks/alive.hpp"
 #include "tasks/gps.hpp"
 #include "tasks/imu.hpp"
+#include "tasks/ring.hpp"
 
 namespace navimet
 {
@@ -20,6 +21,8 @@ namespace navimet
 AliveTask aliveTask;
 GpsTask gpsTask;
 ImuTask imuTask;
+RingTask ringTask;
+modm::PeriodicTimer tmr{1000};
 
 
 void
@@ -29,6 +32,7 @@ Hardware::initialize()
 	aliveTask.initialize();
 	gpsTask.initialize();
 	imuTask.initialize();
+	ringTask.initialize();
 }
 
 void
@@ -37,11 +41,13 @@ Hardware::update()
 	aliveTask.update();
 	gpsTask.update();
 	imuTask.update();
+	ringTask.update();
 
-	static modm::PeriodicTimer tmr{1000};
+	ringTask.setAbsoluteHeading(imuTask.heading());
+
 	if (tmr.execute())
 	{
-		MODM_LOG_DEBUG <<  imuTask.heading() << modm::endl;
+		MODM_LOG_DEBUG << (int)imuTask.heading() << modm::endl;
 	}
 }
 
