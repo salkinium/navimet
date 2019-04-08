@@ -60,7 +60,7 @@ GpsTask::configurePort()
 	inProtoMaskField.setBitValue(inProtoMaskField.BitIdx_inNmea, false);
 
 	// This may not work
-	msg.field_baudRate().setScaled(115.2_kBd);
+	msg.field_baudRate().setScaled(9.6_kBd);
 	MODM_LOG_INFO << "GPS baudrate set to " << msg.field_baudRate().value() << modm::endl;
 
 	sendMessage(msg);
@@ -72,8 +72,8 @@ GpsTask::configureUpdateRate()
 	using OutCfgRate = ublox::message::CfgRate<OutMessage>;
 	OutCfgRate msg;
 
-	msg.field_measRate().setScaled(200_Hz);
-	MODM_LOG_INFO << "GPS measurement rate set to " << msg.field_measRate().value() << modm::endl;
+	msg.field_measRate().setScaled(100); // ms period, 10 Hz is maximum
+	MODM_LOG_INFO.printf("GPS measurement rate set to %ums\n", msg.field_measRate().value());
 
 	sendMessage(msg);
 }
@@ -81,9 +81,10 @@ GpsTask::configureUpdateRate()
 void
 GpsTask::handle(InNavPosllh& msg)
 {
-	MODM_LOG_INFO << "POS: lat=" << comms::units::getDegrees<double>(msg.field_lat()) <<
-		"; lon=" << comms::units::getDegrees<double>(msg.field_lon()) <<
-		"; alt=" << comms::units::getMeters<double>(msg.field_height()) << modm::endl;
+	const double lat = comms::units::getDegrees<double>(msg.field_lat());
+	const double lon = comms::units::getDegrees<double>(msg.field_lon());
+	const uint16_t alt = comms::units::getMeters<uint16_t>(msg.field_height());
+	MODM_LOG_INFO.printf("POS: lat=%3.4fdeg lon=%3.4fdeg alt=%um\n", lat, lon, alt);
 }
 
 void
