@@ -22,10 +22,10 @@ public:
 	initialize();
 
 	void
-	setAbsoluteHeading(float heading);
+	setHeading(float heading);
 
 	void
-	setRelativeHeading(float heading);
+	setDistance(float distance);
 
 	bool
 	update();

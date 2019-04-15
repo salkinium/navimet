@@ -15,6 +15,12 @@
 #undef	MODM_LOG_LEVEL
 #define	MODM_LOG_LEVEL modm::log::INFO
 
+namespace
+{
+modm::ShortTimeout tmr{0};
+uint32_t uptime{0};
+}
+
 namespace navimet
 {
 
@@ -34,13 +40,13 @@ AliveTask::update()
 	{
 		Board::LedD13::reset();
 
-		PT_WAIT_UNTIL(timeout.isExpired());
-		timeout.restart(100);
+		PT_WAIT_UNTIL(tmr.isExpired());
+		tmr.restart(100);
 
 		Board::LedD13::set();
 
-		PT_WAIT_UNTIL(timeout.isExpired()) ;
-		timeout.restart(900);
+		PT_WAIT_UNTIL(tmr.isExpired()) ;
+		tmr.restart(900);
 
 		MODM_LOG_DEBUG << "Seconds since reboot: " << ++uptime << modm::endl;
 	}

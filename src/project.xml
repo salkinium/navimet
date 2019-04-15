@@ -3,7 +3,7 @@
     <repository><path>../ext/modm/repo.lb</path></repository>
     <repository><path>../ext/ublox/repo.lb</path></repository>
   </repositories>
-  <extends>modm:nucleo-f411re</extends>
+  <extends>modm:nucleo-l432kc</extends>
   <options>
     <option name="modm:build:build.path">../build</option>
     <option name="modm:build:project.name">navimet</option>
@@ -11,10 +11,11 @@
   <modules>
     <module>modm:platform:uart:1</module>
     <module>modm:platform:i2c:1</module>
-    <module>modm:platform:spi:1</module>
+    <module>modm:platform:spi:3</module>
     <module>modm:processing:timer</module>
     <module>modm:processing:protothread</module>
     <module>modm:driver:bno055</module>
+    <module>modm:math:geometry</module>
     <module>modm:driver:ws2812</module>
     <module>modm:ui:led</module>
     <module>modm:build:scons</module>

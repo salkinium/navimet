@@ -24,10 +24,6 @@ public:
 
 	bool
 	update();
-
-protected:
-	modm::ShortTimeout timeout{0};
-	uint32_t uptime{0};
 };
 
 }

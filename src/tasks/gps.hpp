@@ -12,13 +12,16 @@
 #pragma once
 // STM32 headers define the RTC module as a macro
 #pragma push_macro("RTC")
+#pragma push_macro("USB")
 #undef RTC
+#undef USB
 #include <ublox/Message.h>
 #include <ublox/message/NavPosllh.h>
 #include <ublox/frame/UbloxFrame.h>
 #pragma pop_macro("RTC")
+#pragma pop_macro("USB")
 
-#include <modm/processing.hpp>
+#include <modm/processing/protothread.hpp>
 #include <string>
 #include <vector>
 
@@ -27,6 +30,7 @@ namespace navimet
 
 class GpsTask : public modm::pt::Protothread
 {
+public:
 	using InMessage =
 	    ublox::Message<
 	        comms::option::ReadIterator<const std::uint8_t*>,
@@ -50,6 +54,15 @@ public:
 	bool
 	update();
 
+public:
+	float latitude() const;
+	float longitude() const;
+	float accuracy() const;
+
+	float distance_to(float latitude, float longitude) const;
+	float heading_to(float latitude, float longitude) const;
+
+public:
     void
     handle(InNavPosllh& msg);
 
@@ -71,19 +84,6 @@ protected:
 
 	void
 	processInputData();
-
-protected:
-    std::vector<std::uint8_t> in_data;
-
-	using AllInMessages =
-	    std::tuple<
-	        InNavPosllh
-	    >;
-
-	using Frame = ublox::frame::UbloxFrame<InMessage, AllInMessages>;
-	Frame frame;
-
-	modm::PeriodicTimer timer{1000};
 };
 
 }
