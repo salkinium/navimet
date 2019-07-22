@@ -10,7 +10,7 @@
 // ----------------------------------------------------------------------------
 
 #include "alive.hpp"
-#include <modm/board.hpp>
+#include "../board.hpp"
 
 #undef	MODM_LOG_LEVEL
 #define	MODM_LOG_LEVEL modm::log::INFO

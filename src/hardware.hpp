@@ -12,7 +12,7 @@
 #ifndef NAVIMET_HARDWARE_HPP
 #define NAVIMET_HARDWARE_HPP
 
-#include <modm/board.hpp>
+#include "board.hpp"
 #include <modm/debug/logger.hpp>
 
 namespace navimet::Hardware

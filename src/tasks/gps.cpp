@@ -10,7 +10,7 @@
 // ----------------------------------------------------------------------------
 
 #include "gps.hpp"
-#include <modm/board.hpp>
+#include "../board.hpp"
 #include <modm/processing/timer.hpp>
 #include <modm/architecture/interface/assert.hpp>
 #include <modm/math/geometry/angle.hpp>

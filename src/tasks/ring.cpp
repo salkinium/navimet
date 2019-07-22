@@ -10,7 +10,7 @@
 // ----------------------------------------------------------------------------
 
 #include "ring.hpp"
-#include <modm/board.hpp>
+#include "../board.hpp"
 #include <modm/processing/timer.hpp>
 #include <modm/driver/pwm/ws2812b.hpp>
 #include <modm/ui/led/tables.hpp>
@@ -33,6 +33,7 @@ float m_heading = -1;
 float m_distance = -1;
 modm::ShortPeriodicTimer tmr{50};
 
+/*
 std::tuple<uint8_t, uint8_t, uint8_t, uint8_t>
 mapHeading(float heading)
 {
@@ -45,6 +46,7 @@ mapHeading(float heading)
 	return {uint8_t(lower) % NumberOfLeds, ilower,
 			uint8_t(upper) % NumberOfLeds, iupper};
 }
+*/
 }
 
 namespace navimet

@@ -3,22 +3,31 @@
     <repository><path>../ext/modm/repo.lb</path></repository>
     <repository><path>../ext/ublox/repo.lb</path></repository>
   </repositories>
-  <extends>modm:nucleo-l432kc</extends>
   <options>
+    <option name="modm:target">stm32l432kcu</option>
     <option name="modm:build:build.path">../build</option>
     <option name="modm:build:project.name">navimet</option>
+    <option name="modm:build:openocd.cfg">openocd.cfg</option>
+    <option name="modm:platform:uart:2:buffer.tx">2048</option>
   </options>
   <modules>
-    <module>modm:platform:uart:1</module>
+    <module>modm:architecture:clock</module>
+    <module>modm:debug</module>
+    <module>modm:platform:clock</module>
+    <module>modm:platform:core</module>
+    <module>modm:platform:gpio</module>
+    <module>modm:platform:uart:2</module>
+
+    <module>modm:build:scons</module>
+    <module>modm:driver:bno055</module>
+    <module>modm:driver:ws2812</module>
+    <module>modm:math:geometry</module>
     <module>modm:platform:i2c:1</module>
     <module>modm:platform:spi:3</module>
-    <module>modm:processing:timer</module>
+    <module>modm:platform:uart:1</module>
     <module>modm:processing:protothread</module>
-    <module>modm:driver:bno055</module>
-    <module>modm:math:geometry</module>
-    <module>modm:driver:ws2812</module>
+    <module>modm:processing:timer</module>
     <module>modm:ui:led</module>
-    <module>modm:build:scons</module>
 
     <module>ublox:ubx</module>
   </modules>
