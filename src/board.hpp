@@ -33,21 +33,22 @@ struct SystemClock {
 	static constexpr uint32_t Apb1 = Frequency;
 	static constexpr uint32_t Apb2 = Frequency;
 
-	static constexpr uint32_t Spi1 = Apb1;
+	static constexpr uint32_t Spi1 = Apb2;
 	static constexpr uint32_t Spi2 = Apb1;
 	static constexpr uint32_t Spi3 = Apb1;
 
-	static constexpr uint32_t Usart1 = Apb2;
 	static constexpr uint32_t I2c1 = Apb1;
 	static constexpr uint32_t I2c2 = Apb1;
 	static constexpr uint32_t I2c3 = Apb1;
 
+	static constexpr uint32_t Usart1 = Apb2;
 	static constexpr uint32_t Usart2 = Apb1;
 	static constexpr uint32_t Usart3 = Apb1;
 	static constexpr uint32_t Usart4 = Apb1;
 	static constexpr uint32_t Usart5 = Apb1;
 
-	static constexpr uint32_t Timer2 = Apb2;
+	static constexpr uint32_t Timer1 = Apb2;
+	static constexpr uint32_t Timer2 = Apb1;
 
 	static bool inline
 	enable()
@@ -55,8 +56,8 @@ struct SystemClock {
 		Rcc::enablePll(
 			Rcc::PllSource::MultiSpeedInternalClock,
 			1,	// 4MHz / M=1 -> 4MHz
-			26,	// 4MHz * N=40 -> 160MHz <= 344MHz = PLL VCO output max, >= 64 MHz = PLL VCO out min
-			2	// 160MHz / P=2 -> 80MHz = F_cpu
+			26,	// 4MHz * N=26 -> 104MHz <= 344MHz = PLL VCO output max, >= 64 MHz = PLL VCO out min
+			2	// 104MHz / P=2 -> 52MHz = F_cpu
 		);
 		Rcc::setFlashLatency<Frequency>();
 
@@ -90,8 +91,8 @@ using D3  = GpioB0;
 using D4  = GpioB7;
 using D5  = GpioB6;
 using D6  = GpioB1;
-// using D7  = GpioF0; // NC
-// using D8  = GpioF1; // NC
+using D7  = GpioC14;
+using D8  = GpioC15;
 using D9  = GpioA8;
 using D10 = GpioA11;
 using D11 = GpioB5;

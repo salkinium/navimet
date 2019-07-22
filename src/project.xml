@@ -17,17 +17,21 @@
     <module>modm:platform:core</module>
     <module>modm:platform:gpio</module>
     <module>modm:platform:uart:2</module>
+    <module>modm:platform:i2c:1</module>
+    <module>modm:platform:spi:1</module>
+    <module>modm:platform:spi:3</module>
+    <module>modm:platform:uart:1</module>
+    <module>modm:platform:timer:2</module>
 
     <module>modm:build:scons</module>
     <module>modm:driver:bno055</module>
     <module>modm:driver:ws2812</module>
+    <module>modm:driver:nrf24</module>
     <module>modm:math:geometry</module>
-    <module>modm:platform:i2c:1</module>
-    <module>modm:platform:spi:3</module>
-    <module>modm:platform:uart:1</module>
     <module>modm:processing:protothread</module>
     <module>modm:processing:timer</module>
     <module>modm:ui:led</module>
+    <module>modm:docs</module>
 
     <module>ublox:ubx</module>
   </modules>

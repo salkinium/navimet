@@ -1,7 +1,4 @@
-/src/modm
-/src/ublox
-/src/invensense
-/src/SConstruct
+/src/modm/docs
 /build
 
 project.xml.log

@@ -55,7 +55,7 @@ GpsTask::initialize()
 	GpsUart::discardReceiveBuffer();
 	configurePort();
 	// Some NEO-6M chips don't support changing their baudrate ;_(
-	// GpsUart::initialize<Board::systemClock, 115.2_kBd>();
+	// GpsUart::initialize<Board::SystemClock, 115.2_kBd>();
 	// configurePort();
 
 	configureUpdateRate();
@@ -147,7 +147,7 @@ GpsTask::handle(InNavPosllh& msg)
 	const uint16_t alt = comms::units::getMeters<uint16_t>(msg.field_height());
 	const uint16_t hacc = comms::units::getMeters<float>(msg.field_hAcc());
 	const uint16_t vacc = comms::units::getMeters<float>(msg.field_vAcc());
-	MODM_LOG_INFO.printf("POS: %3.9f %3.9f %um (~%um ~%um)\n", lat, lon, alt, hacc, vacc);
+	MODM_LOG_INFO.printf("POS: %3.9f %3.9f %um (~%um ~%um)\n", (double)lat, (double)lon, alt, hacc, vacc);
 
 	m_latitude = comms::units::getRadians<float>(msg.field_lat());
 	m_longitude = comms::units::getRadians<float>(msg.field_lon());

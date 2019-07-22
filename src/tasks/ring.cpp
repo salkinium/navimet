@@ -13,40 +13,25 @@
 #include "../board.hpp"
 #include <modm/processing/timer.hpp>
 #include <modm/driver/pwm/ws2812b.hpp>
-#include <modm/ui/led/tables.hpp>
 #include <modm/architecture/interface/atomic_lock.hpp>
 #include <modm/ui/color.hpp>
 #include <modm/math.hpp>
-#include <tuple>
 
 #undef	MODM_LOG_LEVEL
 #define	MODM_LOG_LEVEL modm::log::INFO
 
 namespace
 {
-using Output = Board::D11;
+/// CONFIGURE THIS CORRECTLY!!!
 constexpr size_t NumberOfLeds = 24;
+
+using Output = Board::D11;
 modm::Ws2812b<SpiMaster3, Output, NumberOfLeds> output;
 modm::color::Rgb leds[NumberOfLeds];
 
 float m_heading = -1;
 float m_distance = -1;
 modm::ShortPeriodicTimer tmr{50};
-
-/*
-std::tuple<uint8_t, uint8_t, uint8_t, uint8_t>
-mapHeading(float heading)
-{
-	const float index = (heading * NumberOfLeds) / (2*M_PI);
-	const float lower = floorf(index);
-	const float upper = lower + 1;
-	const uint8_t iupper = modm::ui::table22_8_256[(index - lower) * 255];
-	const uint8_t ilower = modm::ui::table22_8_256[(upper - index) * 255];
-
-	return {uint8_t(lower) % NumberOfLeds, ilower,
-			uint8_t(upper) % NumberOfLeds, iupper};
-}
-*/
 }
 
 namespace navimet
@@ -90,6 +75,7 @@ RingTask::update()
 			if (m_distance < 10) width = NumberOfLeds/2;
 			else if (m_distance < 210) width = (1 - ((m_distance - 10) / 200)) * NumberOfLeds/2;
 
+			/// CONFIGURE THE COLOR HERE:
 			for (int8_t ii = index - width/2; ii <= index + width/2; ii++)
 				leds[(ii + NumberOfLeds) % NumberOfLeds].red = 150;
 		}
